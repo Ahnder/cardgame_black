@@ -40,3 +40,6 @@
     - 게임이 종료되면 게임 참가자의 점수를 비교해서 승패판단을 한다
 
 <br>
+
+### 클래스와 게임진행순서 설계
+<img width="699" alt="design_class_and_sequence" src="https://github.com/Ahnder/cardgame_black/assets/39118212/e888fa10-c5e8-46e9-8a78-670ce475adea">
