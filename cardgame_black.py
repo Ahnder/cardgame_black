@@ -32,7 +32,18 @@ class Gamer():
     카드를 받아와서 총 2장씩 보관한다
     2장 초과시엔 먼저 받은 카드부터 버린다
     '''
-    pass
+    # init
+    def __init__(self) -> None:
+        # 카드를 받아서 손패에 저장 할 빈리스트를 생성
+        self.card_in_hand = list()
+
+
+    # 덱에서 분배해준 카드를 받아서 손패에 저장
+    # 손패에 카드가 2장이면 제일 먼저 받은 카드를 버리고 새로운 카드를 추가
+    def receive_card(self, card):
+        if len(self.card_in_hand) >= 2:
+            self.card_in_hand.pop(0)
+        self.card_in_hand.append(card)    
 
 
 # GameRule
@@ -67,7 +78,8 @@ if __name__ == '__main__':
 #
 # 5) 승패여부 터미널화면에 출력
 
-#
     deck = CardDeck()
+    player1 = Gamer()
     print(deck.card_deck)
-    print(deck.draw_card())
+    player1.receive_card(deck.draw_card())
+    print(player1.card_in_hand)
