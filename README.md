@@ -53,4 +53,4 @@
 <br>
 
 ### 3. 클래스와 게임진행순서 설계
-<img width="600" alt="design_class_and_sequence" src="https://github.com/Ahnder/cardgame_black/assets/39118212/e888fa10-c5e8-46e9-8a78-670ce475adea">
+<img width="630" alt="design_class_and_sequence" src="https://github.com/Ahnder/cardgame_black/assets/39118212/e888fa10-c5e8-46e9-8a78-670ce475adea">

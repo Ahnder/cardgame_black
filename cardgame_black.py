@@ -19,6 +19,11 @@ class CardDeck():
         # 카드덱이 생성되면 카드순서를 무작위로 섞는다
         random.shuffle(self.card_deck)
 
+    
+    # 카드를 한장씩 분배하는 메서드
+    def draw_card(self):
+        return self.card_deck.pop()    
+
 
 # Gamer
 class Gamer():
@@ -65,3 +70,4 @@ if __name__ == '__main__':
 #
     deck = CardDeck()
     print(deck.card_deck)
+    print(deck.draw_card())
