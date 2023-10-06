@@ -5,7 +5,18 @@
 
 <br>
 
-### 게임 규칙
+
+<!-- 목차 생성 -->
+### 목차:
+1. [게임 규칙](#1-게임-규칙)
+2. [객체들의 속성과 역할](#2-객체들의-속성과-역할)
+3. [클래스와 게임진행순서 설계](#3-클래스와-게임진행순서-설계)
+
+
+<br>
+
+
+### 1. 게임 규칙
 
 - 카드덱은 총 52장의 카드로 구성(무늬와 끗수를 곱한 총 52가지의 카드)
     - suit(무늬): spade, heart, diamond, clover
@@ -24,7 +35,7 @@
 
 <br>
 
-### 객체들의 속성과 역할
+### 2. 객체들의 속성과 역할
 
 - CardDeck
     - 총 52장의 카드로 구성 된 리스트를 가지고 있다
@@ -41,5 +52,5 @@
 
 <br>
 
-### 클래스와 게임진행순서 설계
-<img width="699" alt="design_class_and_sequence" src="https://github.com/Ahnder/cardgame_black/assets/39118212/e888fa10-c5e8-46e9-8a78-670ce475adea">
+### 3. 클래스와 게임진행순서 설계
+<img width="600" alt="design_class_and_sequence" src="https://github.com/Ahnder/cardgame_black/assets/39118212/e888fa10-c5e8-46e9-8a78-670ce475adea">
