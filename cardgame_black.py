@@ -1,3 +1,5 @@
+import random
+
 # CardDeck
 class CardDeck():
     ''' 52종의 카드를 보유하는 덱  클래스
@@ -5,7 +7,17 @@ class CardDeck():
     카드 분배 요청이 들어 올 시 1장씩 배분해준다
     배분해준 카드는 덱에 더이상 존재하지 않는다
     '''
-    pass
+    # init
+    def __init__(self):
+        # 카드덱 초기화 총 52종의 카드를 생성한다
+        # suit: 카드의 무늬, deno: 카드의 끗수
+        self.card_deck = [
+            suit + '_' + deno
+            for suit in ['spade', 'heart', 'diamond', 'clover']
+            for deno in 'A23456789TJQK'
+        ]        
+        # 카드덱이 생성되면 카드순서를 무작위로 섞는다
+        random.shuffle(self.card_deck)
 
 
 # Gamer
@@ -50,5 +62,6 @@ if __name__ == '__main__':
 #
 # 5) 승패여부 터미널화면에 출력
 
-
-    pass
+#
+    deck = CardDeck()
+    print(deck.card_deck)
