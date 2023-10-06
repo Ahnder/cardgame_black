@@ -79,7 +79,15 @@ if __name__ == '__main__':
 # 5) 승패여부 터미널화면에 출력
 
     deck = CardDeck()
+    dealer = Gamer()
     player1 = Gamer()
-    print(deck.card_deck)
-    player1.receive_card(deck.draw_card())
+    print('카드덱:\n', deck.card_deck)
+    
+    # 카드를 한장씩 두번 배분한다
+    # 현재는 range 안에 2라는 숫자가 하드코딩 되어 있는데 차후 변수로 바꿀예정
+    for i in range(2):
+        player1.receive_card(deck.draw_card())
+        dealer.receive_card(deck.draw_card())
+
     print(player1.card_in_hand)
+    print(dealer.card_in_hand)

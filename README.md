@@ -52,5 +52,15 @@
 
 <br>
 
-### 3. 클래스와 게임진행순서 설계
+### 3. 클래스와 메인함수 순서 설계
+- 설계한 메인함수 순서에 맞춰 클래스와 메서드를 작성한다
+
+
+<br>
+
+
 <img width="630" alt="design_class_and_sequence" src="https://github.com/Ahnder/cardgame_black/assets/39118212/e888fa10-c5e8-46e9-8a78-670ce475adea">
+
+
+<br>
+
