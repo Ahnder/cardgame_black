@@ -143,6 +143,33 @@ if __name__ == '__main__':
         player1.receive_card(deck.draw_card())
         dealer.receive_card(deck.draw_card())
 
+
+    # 플레이어에게 카드 추가 여부를 물어보고 딜러 또한 카드 추가를 결정한다
+    while True:
+        # 플레이어에게 현재 보유 카드를 출력해준다
+        print('플레이어 현재 보유 카드: ', player1.card_in_hand) 
+
+        add_card_answer = input('카드를 추가하시겠습니까? (y/n): ')
+        # 플레이어가 카드를 추가하지 않을 경우 반복문을 탈출해서 승패판단읋 진행한다
+        if add_card_answer == 'n':
+            break
+        # 플레이어가 카드를 추가하는 경우, 이 단계에서 딜러도 카드 추가여부를 결정한다
+        elif add_card_answer == 'y':
+            player1.receive_card(deck.draw_card())
+            
+            # 현재 딜러의 점수를 계산하고
+            # 그 점수를 추가여부판단 메서드에 변수로 넣어
+            # 반환되는 값이 True면 카드를 추가하고 False면 추가하지 않는다
+            dealer_score = rule.cal_score(dealer.card_in_hand)
+            if dealer.decide_to_receive_card(dealer_score):
+                dealer.receive_card(deck.draw_card())
+        # 입력 값이 y 또는 n 이 아닐 경우 안내문 출력 후 반복문의 처음으로 돌아간다
+        else:
+            print('잘못 된 입력입니다')
+            continue
+
+
+
     # 승패를 판단해서 출력해준다
     win_deck = rule.compare_score(player1.card_in_hand, dealer.card_in_hand)
     if not win_deck:
