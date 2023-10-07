@@ -2,6 +2,8 @@
 
 - 블랙잭의 규칙을 간소화한 파이썬 프로그램
 - 게임은 전부 터미널로 진행한다
+- [전체 문서 노션 링크](https://curved-numeric-eaf.notion.site/with-python-48260f88395541649889ad129c6b1dad?pvs=4)
+
 
 <br>
 
@@ -67,13 +69,13 @@
 
 ### 4. 코드 구현 과정
 
-[<img width="496" alt="스크린샷 2023-10-07 오후 6 32 39" src="https://github.com/Ahnder/cardgame_black/assets/39118212/fd4dc6f5-266f-4e2b-bdbc-2840f2ac2f1d">](https://www.notion.so/03fdfdd8740f489188e9c7a44c11a4d0?pvs=4)
+[<img width="496" alt="스크린샷 2023-10-07 오후 6 32 39" src="https://github.com/Ahnder/cardgame_black/assets/39118212/fd4dc6f5-266f-4e2b-bdbc-2840f2ac2f1d">](https://curved-numeric-eaf.notion.site/03fdfdd8740f489188e9c7a44c11a4d0?pvs=4)
 
 
 <br>
 
 
-[코드구현과정 노션페이지](https://www.notion.so/03fdfdd8740f489188e9c7a44c11a4d0?pvs=4)
+[코드구현과정 노션페이지](https://curved-numeric-eaf.notion.site/03fdfdd8740f489188e9c7a44c11a4d0?pvs=4)
 
 과정이 길어져서 노션페이지에 작성하였습니다. 이미지 또는 위의 노션페이지 링크를 클릭해주세요! 
 
