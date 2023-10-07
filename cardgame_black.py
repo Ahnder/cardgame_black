@@ -51,13 +51,27 @@ class GameRule():
     ''' 점수계산 요청이 들어오면 점수계산을 해서 리턴해준다
     게임이 종료되면 각 점수를 비교해서 승패를 판단해준다
     '''
-    pass
+    # 카드리스트를 매개변수로 받아 카드 점수를 더하여 나온 총 점수를 반환해준다
+    def cal_score(self, cardlist):
+        # 내부 변수 score
+        score = 0
+        
+        for card in cardlist:
+            # card 문자열의 끗수는 제일 마지막에 있으므로 문자열의 마지막 항목을 가져온다
+            if card[-1].isdigit():
+                score += int(card[-1])
+            elif card[-1] in 'TJQK':
+                score += 10
+            elif card[-1] in 'A':
+                score += 1
+            else:
+                score += 0          
+        
+        return score
 
 
 
 # main
-if __name__ == '__main__':
-
 # 메인함수 진행 순서
 #
 # 1) 각 클래스로 객체를 생성한다
@@ -77,10 +91,11 @@ if __name__ == '__main__':
 #   (게임룰에서 메서드로 구현)
 #
 # 5) 승패여부 터미널화면에 출력
-
+if __name__ == '__main__':
     deck = CardDeck()
     dealer = Gamer()
     player1 = Gamer()
+    rule = GameRule()
     print('카드덱:\n', deck.card_deck)
     
     # 카드를 한장씩 두번 배분한다
@@ -89,5 +104,5 @@ if __name__ == '__main__':
         player1.receive_card(deck.draw_card())
         dealer.receive_card(deck.draw_card())
 
-    print(player1.card_in_hand)
-    print(dealer.card_in_hand)
+    print('플레이어1 손패: ', player1.card_in_hand, '플레이어1 점수: ', rule.cal_score(player1.card_in_hand))
+    print('딜러 손패: ', dealer.card_in_hand, '딜러 점수: ', rule.cal_score(dealer.card_in_hand))
