@@ -33,7 +33,7 @@ class Gamer():
     2장 초과시엔 먼저 받은 카드부터 버린다
     '''
     # init
-    def __init__(self) -> None:
+    def __init__(self):
         # 카드를 받아서 손패에 저장 할 빈리스트를 생성
         self.card_in_hand = list()
         # 현재 규칙 사항인 손패의 총 카드수를 변수로 생성
@@ -55,10 +55,21 @@ class Dealer(Gamer):
     ''' Gamer 클래스를 상속받은 클래스
     딜러만의 규칙: 총 카드 점수가 16이하면 카드를 한장 더 추가하고
                17이상이면 카드를 더 이상 추가하지 않는다           
-    '''    
+    '''
+    # 카드 추가여부를 결정하는 수인 16을 초기화메서드에 변수로 작성해서 관라한다
+    def __init__(self):
+        super().__init__()
+        self.add_to_card_score = 16    
+    
+    
     # 카드를 추가할지 결정하는 메서드
-    def decide_to_receive_card(self):
-        pass
+    # GameRule 클래스의 점수계산 메소드에 계산을 요청하여 받은 점수를 가지고 결정한다
+    def decide_to_receive_card(self, score):
+        # 점수가 16을 초과하면 False, 16이하면 True를 리턴
+        if score > self.add_to_card_score:
+            return False
+        else:
+            return True
 
 
 # GameRule
@@ -132,7 +143,7 @@ if __name__ == '__main__':
         player1.receive_card(deck.draw_card())
         dealer.receive_card(deck.draw_card())
 
-    #
+    # 승패를 판단해서 출력해준다
     win_deck = rule.compare_score(player1.card_in_hand, dealer.card_in_hand)
     if not win_deck:
         print('무승부입니다.')
