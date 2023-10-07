@@ -90,9 +90,14 @@ class GameRule():
     # 요청이 들어온 카드리스트 점수계산을 한다.
     def cal_score(self, cardlist):
         # sum을 이용하여 카드의 점수를 계산한다
+        # 카드리스트에서 카드를 가져오고
+        # 규칙 딕셔너리의 key, value를 items를 이용해서 가져온다
+        # 규칙 딕셔너리의 key와 카드의 끗수가 같은 딕셔너리 값을 가져와 합산한다
         score = sum(
-            self.score_rule_dict[card[self.deno_value]]
+            vaule
             for card in cardlist
+            for key, vaule in self.score_rule_dict.items()
+            if key is card[self.deno_value]
         )
         return score
     
@@ -136,19 +141,18 @@ if __name__ == '__main__':
     dealer = Dealer()
     player1 = Gamer()
     rule = GameRule()
-    #print('카드덱:\n', deck.card_deck)
     
     # 카드를 한장씩 두번 배분한다
     # 현재는 range 안에 2라는 숫자가 하드코딩 되어 있는데 차후 변수로 바꿀예정
     for i in range(2):
-        player1.receive_card(deck.draw_card())
         dealer.receive_card(deck.draw_card())
+        player1.receive_card(deck.draw_card())
 
 
     # 플레이어에게 카드 추가 여부를 물어보고 딜러 또한 카드 추가를 결정한다
     while True:
         # 플레이어에게 현재 보유 카드를 출력해준다
-        print('플레이어 현재 보유 카드: ', player1.card_in_hand) 
+        print('\n플레이어 현재 보유 카드: ', ' '.join(player1.card_in_hand)) 
 
         add_card_answer = input('카드를 추가하시겠습니까? (y/n): ')
         # 플레이어가 카드를 추가하지 않을 경우 반복문을 탈출해서 승패판단읋 진행한다
@@ -157,7 +161,6 @@ if __name__ == '__main__':
         # 플레이어가 카드를 추가하는 경우, 이 단계에서 딜러도 카드 추가여부를 결정한다
         elif add_card_answer == 'y':
             player1.receive_card(deck.draw_card())
-            
             # 현재 딜러의 점수를 계산하고
             # 그 점수를 추가여부판단 메서드에 변수로 넣어
             # 반환되는 값이 True면 카드를 추가하고 False면 추가하지 않는다
@@ -170,17 +173,16 @@ if __name__ == '__main__':
             continue
 
 
-
     # 승패를 판단해서 출력해준다
     win_deck = rule.compare_score(player1.card_in_hand, dealer.card_in_hand)
     if not win_deck:
-        print('무승부입니다.')
+        print('\n무승부입니다.')
     elif win_deck is player1.card_in_hand:
-        print('플레이어가 승리했습니다')
+        print('\n플레이어가 승리했습니다')
     elif win_deck is dealer.card_in_hand:
-        print('딜러가 승리했습니다')
+        print('\n딜러가 승리했습니다')
     else:
         print('승패판단과정에서 에러발생')            
 
-    print('플레이어1 손패: ', player1.card_in_hand, '플레이어1 점수: ', rule.cal_score(player1.card_in_hand))
-    print('딜러 손패: ', dealer.card_in_hand, '딜러 점수: ', rule.cal_score(dealer.card_in_hand))
+    print('플레이어1 손패: ', ' '.join(player1.card_in_hand), '점수: ', rule.cal_score(player1.card_in_hand))
+    print('딜러 손패: ', ' '.join(dealer.card_in_hand), '점수: ', rule.cal_score(dealer.card_in_hand))
