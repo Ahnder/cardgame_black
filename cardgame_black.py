@@ -50,6 +50,17 @@ class Gamer():
         self.card_in_hand.append(card)    
 
 
+# Dealer
+class Dealer(Gamer):
+    ''' Gamer 클래스를 상속받은 클래스
+    딜러만의 규칙: 총 카드 점수가 16이하면 카드를 한장 더 추가하고
+               17이상이면 카드를 더 이상 추가하지 않는다           
+    '''    
+    # 카드를 추가할지 결정하는 메서드
+    def decide_to_receive_card(self):
+        pass
+
+
 # GameRule
 class GameRule():
     ''' 점수계산 요청이 들어오면 점수계산을 해서 리턴해준다
@@ -110,10 +121,10 @@ class GameRule():
 # 5) 승패여부 터미널화면에 출력
 if __name__ == '__main__':
     deck = CardDeck()
-    dealer = Gamer()
+    dealer = Dealer()
     player1 = Gamer()
     rule = GameRule()
-    print('카드덱:\n', deck.card_deck)
+    #print('카드덱:\n', deck.card_deck)
     
     # 카드를 한장씩 두번 배분한다
     # 현재는 range 안에 2라는 숫자가 하드코딩 되어 있는데 차후 변수로 바꿀예정
@@ -121,6 +132,16 @@ if __name__ == '__main__':
         player1.receive_card(deck.draw_card())
         dealer.receive_card(deck.draw_card())
 
+    #
+    win_deck = rule.compare_score(player1.card_in_hand, dealer.card_in_hand)
+    if not win_deck:
+        print('무승부입니다.')
+    elif win_deck is player1.card_in_hand:
+        print('플레이어가 승리했습니다')
+    elif win_deck is dealer.card_in_hand:
+        print('딜러가 승리했습니다')
+    else:
+        print('승패판단과정에서 에러발생')            
+
     print('플레이어1 손패: ', player1.card_in_hand, '플레이어1 점수: ', rule.cal_score(player1.card_in_hand))
     print('딜러 손패: ', dealer.card_in_hand, '딜러 점수: ', rule.cal_score(dealer.card_in_hand))
-    print(rule.compare_score(player1.card_in_hand, dealer.card_in_hand))
