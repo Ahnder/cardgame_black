@@ -56,17 +56,13 @@ class Dealer(Gamer):
     딜러만의 규칙: 총 카드 점수가 16이하면 카드를 한장 더 추가하고
                17이상이면 카드를 더 이상 추가하지 않는다           
     '''
-    # 카드 추가여부를 결정하는 수인 16을 초기화메서드에 변수로 작성해서 관라한다
-    def __init__(self):
-        super().__init__()
-        self.add_to_card_score = 16    
-    
-    
     # 카드를 추가할지 결정하는 메서드
     # GameRule 클래스의 점수계산 메소드에 계산을 요청하여 받은 점수를 가지고 결정한다
     def decide_to_receive_card(self, score):
-        # 점수가 16을 초과하면 False, 16이하면 True를 리턴
-        if score > self.add_to_card_score:
+        # 현재 규칙하의 점수 기준 변수
+        add_to_card_score = 16 
+        # 점수가 기준을 초과하면 False, 16이하면 True를 리턴
+        if score > add_to_card_score:
             return False
         else:
             return True
@@ -77,22 +73,27 @@ class GameRule():
     ''' 점수계산 요청이 들어오면 점수계산을 해서 리턴해준다
     게임이 종료되면 각 점수를 비교해서 승패를 판단해준다
     '''
-    # 카드리스트를 매개변수로 받아 카드 점수를 더하여 나온 총 점수를 반환해준다
+    # 점수 규칙을 초기화 메서드에 작성해서 관리
+    def __init__(self):
+        # 점수 기준 딕셔너리
+        # 문자열의 숫자는 그 숫자에 맞는 정수형 값 
+        # A는 1점, JKQ는 10점
+        self.score_rule_dict = {
+            'A': 1, 'T': 10, 'J': 10, 'Q': 10, 'K': 10,
+            '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9
+        }
+        # 현재 카드의 형태는 spade_9 같은 문자열이므로 
+        # 문자열의 가장 마지막 문자를 값으로 가져오기 위한 변수
+        self.deno_value = -1
+    
+    
+    # 요청이 들어온 카드리스트 점수계산을 한다.
     def cal_score(self, cardlist):
-        # 내부 변수 score
-        score = 0
-        
-        for card in cardlist:
-            # card 문자열의 끗수는 제일 마지막에 있으므로 문자열의 마지막 항목을 가져온다
-            if card[-1].isdigit():
-                score += int(card[-1])
-            elif card[-1] in 'TJQK':
-                score += 10
-            elif card[-1] in 'A':
-                score += 1
-            else:
-                score += 0          
-        
+        # sum을 이용하여 카드의 점수를 계산한다
+        score = sum(
+            self.score_rule_dict[card[self.deno_value]]
+            for card in cardlist
+        )
         return score
     
 
