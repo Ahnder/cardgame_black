@@ -68,7 +68,20 @@ class GameRule():
                 score += 0          
         
         return score
+    
 
+    # 두개의 카드리스트를 받아서 점수를 비교, 승리한 쪽의 카드리스트를 반환한다
+    def compare_score(self, cardlist1, cardlist2):
+        # 카드리스트를 내부함수인 cal_score를 사용해서 점수를 계산한다
+        deck1_score = self.cal_score(cardlist1)
+        deck2_score = self.cal_score(cardlist2)
+        # if문으로 점수를 비교해서 승리한 쪽의 카드리스트를 반환
+        if deck1_score > deck2_score:
+            return cardlist1
+        elif deck1_score < deck2_score:
+            return cardlist2
+        else:
+            return
 
 
 # main
@@ -106,3 +119,4 @@ if __name__ == '__main__':
 
     print('플레이어1 손패: ', player1.card_in_hand, '플레이어1 점수: ', rule.cal_score(player1.card_in_hand))
     print('딜러 손패: ', dealer.card_in_hand, '딜러 점수: ', rule.cal_score(dealer.card_in_hand))
+    print(rule.compare_score(player1.card_in_hand, dealer.card_in_hand))
