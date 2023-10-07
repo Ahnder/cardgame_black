@@ -36,13 +36,17 @@ class Gamer():
     def __init__(self) -> None:
         # 카드를 받아서 손패에 저장 할 빈리스트를 생성
         self.card_in_hand = list()
+        # 현재 규칙 사항인 손패의 총 카드수를 변수로 생성
+        self.limit_card_amount = 2
+        # 손패가 2장일 시 버릴 제일 먼저 받은 카드의 인덱스를 변수로 생성
+        self.out_hand_index = 0
 
 
     # 덱에서 분배해준 카드를 받아서 손패에 저장
     # 손패에 카드가 2장이면 제일 먼저 받은 카드를 버리고 새로운 카드를 추가
     def receive_card(self, card):
-        if len(self.card_in_hand) >= 2:
-            self.card_in_hand.pop(0)
+        if len(self.card_in_hand) >= self.limit_card_amount:
+            self.card_in_hand.pop(self.out_hand_index)
         self.card_in_hand.append(card)    
 
 
